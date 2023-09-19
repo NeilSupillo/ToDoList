@@ -1,0 +1,40 @@
+<%-include("header")-%>
+  <div class="box" id="heading">
+    <h1> <%=listName%> </h1>
+  </div>
+
+  <div class="box">
+     
+     <p class="header">You have <%=task%> task todo </p>
+    <%add.forEach(function (items){ %>
+        
+     <form action="/delete" method="post">   
+
+    <div class="item">
+      <div class="checkbox-container">
+          <input type="checkbox" name="check">  
+        <p class="val"><%=items.todo %></p>      
+       <button class="remove" type="submit">x</button>
+       <input type="hidden" name="del" value="<%=items._id%>">  
+     <input type="hidden" name="name" value="<%=listName%>"></input>
+      </div>
+     </div>
+    </form>
+    
+    <form action="/edit" method="post">    
+     <button class="remove" type="submit">Edit</button>
+       <input type="hidden" name="del" value="<%=items._id%>">  
+       <input type="hidden" name="stringValue" value="<%=items.todo %>">  
+     
+      
+    </form>
+    <% }) %>
+    
+    <form action="<%=roo%>" class="box" method="post">
+
+      <input type="text" name="newitem" id="" placeholder="New Item" required value="<%=toEdit%>">
+      <button class="add" type="submit" name="route" value="listName" >+</button>
+    </form>
+  </div>
+
+<%-include("footer")-%>
